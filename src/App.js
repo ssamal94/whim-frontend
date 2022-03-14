@@ -6,7 +6,8 @@ import Register from "./views/Register";
 function App() {
   return (
     <div className="App">
-      <Register></Register>
+      {/* <Register></Register> */}
+      <Login></Login>
     </div>
   );
 }
