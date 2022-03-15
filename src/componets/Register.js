@@ -8,6 +8,7 @@ import {
 } from "../scripts/validator.js";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 
 /**@module Component_RegisterUser */
 /**
@@ -19,6 +20,10 @@ import TextField from "@mui/material/TextField";
  * @param {String} confirmPassword Repeat Password
  */
 const Register = () => {
+  //Route constant for navigation
+  const navigate = useNavigate();
+
+  //Store variable to store user details
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -26,6 +31,7 @@ const Register = () => {
     confirmPassword: "",
   });
 
+  //Store variables to store helper text in case of wrong input from user
   const [helperTexts, setHelperTexts] = useState({
     nameMessage: "",
     emailMessage: "",
@@ -106,9 +112,15 @@ const Register = () => {
 
     //If all reqirements passes, post request sent
     if (fail === 0) {
-      axios
-        .post("http://localhost:9032/register", user)
-        .then((res) => console.log("A new user reigstered"));
+      axios.post("http://localhost:9032/register", user).then((res) => {
+        //If registration was sucessful, redirect to login page
+        //Else alert error message
+        if (res.data.message === "User Added") {
+          navigate("/login");
+        } else {
+          alert(res.data.message);
+        }
+      });
     }
   };
 
@@ -172,8 +184,8 @@ const Register = () => {
             </div>
           </form>
           <div className="login">
-            <span>
-              Already registered? <a href="#">Login Here</a>
+            <span className="wrongAuth" onClick={() => navigate("/login")}>
+              Already registered? Login Here.
             </span>
           </div>
           <div className="card-image-shadow"></div>

@@ -3,6 +3,7 @@ import "../assets/styles/scss/style.scss";
 import logo from "../assets/images/whim.png";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 /**@module Component_LoginUser */
 
@@ -14,6 +15,9 @@ import axios from "axios";
  */
 
 const Login = () => {
+  //Route constant for navigation
+  const navigate = useNavigate();
+  //State for user details
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -29,9 +33,15 @@ const Login = () => {
 
   const loginUser = (event) => {
     event.preventDefault();
-    axios
-      .post("http://localhost:9032/login", user)
-      .then((res) => alert(res.data.message));
+    axios.post("http://localhost:9032/login", user).then((res) => {
+      //If details match, redirect to home page and create a token
+      //Else alert error message
+      if (res.data.message === "User Logged In") {
+        navigate("/");
+      } else {
+        alert(res.data.message);
+      }
+    });
   };
 
   return (
@@ -68,11 +78,12 @@ const Login = () => {
               <input className="card-submit" type="submit" value="Log in" />
             </div>
           </form>
+          <div className="register">
+            <span className="wrongAuth" onClick={() => navigate("/register")}>
+              Not a member? Register Here.
+            </span>
+          </div>
           <div className="card-image-shadow"></div>
-        </div>
-        <div className="register">
-          <p>Not a member?</p>
-          <a href="#">Register Here</a>
         </div>
       </div>
     </div>
