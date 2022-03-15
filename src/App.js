@@ -6,6 +6,10 @@ import {
   Routes as Switch,
   Route,
 } from "react-router-dom";
+import TopNav from "./componets/TopNav";
+import Card from "./componets/Card";
+import Home from "./componets/Home";
+import Footer from "./componets/Footer";
 
 function App() {
   return (
@@ -16,6 +20,10 @@ function App() {
           <Route path="/register" element={<Register />} />
         </Switch>
       </Router>
+      <TopNav></TopNav>
+      <Home></Home>
+      <Card></Card>
+      <Footer></Footer>
     </div>
   );
 }
