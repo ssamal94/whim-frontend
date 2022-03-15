@@ -12,6 +12,18 @@
     padding: 0;
   }
 
+  .wrongAuth {
+    color: #4183f5;
+    &:hover {
+      color: #14a76c;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+  .MuiFormControl-root {
+    width: 100% !important;
+  }
+
   .logo {
     display: block;
     margin-left: auto;
@@ -44,6 +56,7 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 20px;
   }
 
   .flex-column {
@@ -62,9 +75,8 @@
 
   input {
     padding: 0.8rem;
-    height: 40px;
+    height: 30px;
     font-size: 1rem;
-    border: 1px solid #ccc;
     border-radius: 5px;
     outline-color: #4183f5;
     ::placeholder {
@@ -74,7 +86,6 @@
 
   input:not(.card-cvv, .card-submit),
   table {
-    margin-bottom: 20px;
   }
 
   label {
