@@ -21,6 +21,10 @@
   padding: 0;
 }
 
+.login-container .MuiFormControl-root {
+  width: 100% !important;
+}
+
 .login-container .logo {
   display: block;
   margin-left: auto;
@@ -66,6 +70,7 @@
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .login-container .flex-column {
@@ -89,10 +94,9 @@
 }
 
 .login-container input {
-  padding: 10px;
-  height: 40px;
+  padding: 0.8rem;
+  height: 30px;
   font-size: 1rem;
-  border: 1px solid #ccc;
   border-radius: 5px;
   outline-color: #4183f5;
 }
@@ -111,11 +115,6 @@
 
 .login-container input ::placeholder {
   font-size: 1rem;
-}
-
-.login-container input,
-.login-container table {
-  margin-bottom: 20px;
 }
 
 .login-container label {
@@ -189,6 +188,10 @@
   padding: 0;
 }
 
+.register-container .MuiFormControl-root {
+  width: 100% !important;
+}
+
 .register-container .logo {
   display: block;
   margin-left: auto;
@@ -234,6 +237,7 @@
           flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-bottom: 20px;
 }
 
 .register-container .flex-column {
@@ -258,9 +262,8 @@
 
 .register-container input {
   padding: 0.8rem;
-  height: 40px;
+  height: 30px;
   font-size: 1rem;
-  border: 1px solid #ccc;
   border-radius: 5px;
   outline-color: #4183f5;
 }
@@ -279,11 +282,6 @@
 
 .register-container input ::placeholder {
   font-size: 1rem;
-}
-
-.register-container input,
-.register-container table {
-  margin-bottom: 20px;
 }
 
 .register-container label {
