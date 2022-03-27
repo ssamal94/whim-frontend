@@ -131,6 +131,9 @@ const Register = () => {
           <div className="logo">
             <img src={logo} alt="something broke"></img>
           </div>
+          <div className="pageName">
+            <span>Register</span>
+          </div>
           <form onSubmit={registerUser} method="post">
             <div className="flex-row">
               <TextField
