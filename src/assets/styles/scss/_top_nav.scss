@@ -2,80 +2,150 @@
 .topnav {
   overflow: hidden;
   background-color: #e9e9e9;
-}
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-  font-weight: 500;
-}
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-.topnav a.active {
-  color: white;
-}
-.topnav input[type="text"] {
-  float: left;
-  padding: 6px;
-  border: none;
-  margin-top: 12px;
-  margin-right: 16px;
-  font-size: 15px;
-  border-radius: 10cm;
-}
-.topnav .icon {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav a,
-  .topnav input[type="text"] {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
+  display: flex;
+  height: 25% !important;
+  align-items: center;
+  .logo {
     padding: 14px;
+    &:hover {
+      cursor: pointer;
+    }
   }
-  .topnav input[type="text"] {
-    border: 1px solid #ccc;
+  a {
+    float: left;
+    display: flex;
+    color: black;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    &:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    &.active {
+      color: white;
+    }
   }
-}
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {
+  .search-container {
+    width: 30%;
+    display: flex;
+    margin: 0 auto;
+    .search-icon {
+      position: relative;
+      float: right;
+      top: -6px;
+      right: 67px;
+      &:hover {
+        cursor: pointer;
+        transition: 0.35s ease;
+        color: red;
+      }
+    }
+    i {
+      transform: translate(-32px, 14px);
+    }
+    input#search-bar {
+      transform: translateX(-69px);
+      border-radius: 10cm;
+      width: 100%;
+      height: 1vh;
+      padding: 16px;
+      font-size: 1rem;
+      border: 1px solid #d0cfce;
+      outline: none;
+      &:focus {
+        border: 1px solid #008abf;
+        transition: 0.35s ease;
+        color: #008abf;
+        &::-webkit-input-placeholder {
+          transition: opacity 0.45s ease;
+          opacity: 0;
+        }
+        &::-moz-placeholder {
+          transition: opacity 0.45s ease;
+          opacity: 0;
+        }
+        &:-ms-placeholder {
+          transition: opacity 0.45s ease;
+          opacity: 0;
+        }
+      }
+      &:hover {
+        border: 1px solid #008abf;
+        transition: 0.35s ease;
+        color: #008abf;
+      }
+    }
+  }
+  .icon {
     display: none;
   }
-  .topnav a.icon {
-    float: right;
-    display: block;
+
+  @media screen and (max-width: 600px) {
+    a,
+    input[type="text"] {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+    }
+    input[type="text"] {
+      border: 1px solid #ccc;
+    }
   }
-}
-@media screen and (max-width: 600px) {
-  .topnav.responsive {
-    position: relative;
+  @media screen and (max-width: 600px) {
+    a:not(:first-child) {
+      display: none;
+    }
+    a.icon {
+      float: right;
+      display: block;
+    }
   }
-  .topnav.responsive a.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
+  @media screen and (max-width: 600px) {
+    .responsive {
+      position: relative;
+    }
+    .responsive a.icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .responsive a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
   }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
+  .userWrapper {
+    &:hover {
+      cursor: pointer;
+    }
+    display: flex;
+    color: black;
+    text-align: center;
+    margin: 1rem;
+    .css-e53awj-MuiStack-root {
+      border: 1px solid red;
+    }
+    .fa-user:before {
+      padding-right: 4px;
+    }
+    i {
+      padding-right: 0.2rem;
+      display: flex;
+      vertical-align: middle;
+      color: black !important;
+    }
+    .userName {
+      padding-right: 0.2rem;
+      font-weight: bold;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      color: black;
+    }
   }
-}
-.topnav .SignIn {
-  float: right;
-  display: block;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  font-size: 17px;
 }
