@@ -2,6 +2,7 @@ import "./App.scss";
 import Login from "./views/Login";
 import Register from "./views/Register";
 import Home from "./views/Home";
+import ForgotPassword from "./views/ForgotPassword";
 import {
   BrowserRouter as Router,
   Routes as Switch,
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
+          <Route path="/forgot_password" element={<ForgotPassword />} />
         </Switch>
       </Router>
     </div>

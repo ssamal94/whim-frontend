@@ -53,6 +53,9 @@ const Login = () => {
           <div className="logo">
             <img src={logo} alt="something broke"></img>
           </div>
+          <div className="pageName">
+            <span>Login</span>
+          </div>
           <form onSubmit={loginUser} method="post">
             <div className="flex-row">
               <TextField
@@ -81,6 +84,12 @@ const Login = () => {
             </div>
           </form>
           <div className="register">
+            <span
+              className="wrongAuth"
+              onClick={() => navigate("/forgot_password")}
+            >
+              Forgot Password?
+            </span>
             <span className="wrongAuth" onClick={() => navigate("/register")}>
               Not a member? Register Here.
             </span>
