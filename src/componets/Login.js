@@ -36,7 +36,9 @@ const Login = () => {
     axios.post("http://localhost:9032/login", user).then((res) => {
       //If details match, redirect to home page and create a token
       //Else alert error message
-      if (res.data.message === "User Logged In") {
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("name", res.data.name);
         navigate("/");
       } else {
         alert(res.data.message);

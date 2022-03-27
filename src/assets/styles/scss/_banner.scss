@@ -1,0 +1,9 @@
+.bannerImageWrapper {
+  height: 50vh;
+  overflow: hidden;
+  img {
+    background-image: "../../images/homebanner.jpg";
+    width: 100% !important;
+    height: auto;
+  }
+}
