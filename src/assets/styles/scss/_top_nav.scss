@@ -1,5 +1,7 @@
 /* No CSS */ /*# sourceMappingURL=top_nav.css.map */
 .topnav {
+  position: sticky;
+  top: 0;
   overflow: hidden;
   background-color: #f8f8ff;
   display: flex;

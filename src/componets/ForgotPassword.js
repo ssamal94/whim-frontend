@@ -29,12 +29,13 @@ const ForgotPassword = () => {
     });
   };
 
-  const loginUser = (event) => {
+  const updatePassword = (event) => {
     event.preventDefault();
     axios.post("http://localhost:9032/forgot_password", user).then((res) => {
       //If details match, redirect to home page and create a token
       //Else alert error message
-      if (res.data) {
+      if (res.data.status === "ok") {
+        alert(res.data.message);
         navigate("/login");
       } else {
         alert(res.data.message);
@@ -52,16 +53,17 @@ const ForgotPassword = () => {
             <div className="pageName">
               <span>Reset password</span>
             </div>
-            <form onSubmit={loginUser} method="post">
+            <form onSubmit={updatePassword} method="post">
               <div className="flex-row">
                 <TextField
                   name="email"
-                  value={user.name}
+                  value={user.email}
                   onChange={handleInputChange}
                   className="card-name"
                   label="Email"
                   variant="outlined"
                   type="text"
+                  required
                 />
               </div>
               <div className="flex-row">

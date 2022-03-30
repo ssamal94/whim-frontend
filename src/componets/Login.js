@@ -60,7 +60,7 @@ const Login = () => {
             <div className="flex-row">
               <TextField
                 name="email"
-                value={user.name}
+                value={user.email}
                 onChange={handleInputChange}
                 className="card-name"
                 label="Email"
@@ -75,7 +75,7 @@ const Login = () => {
                 type="password"
                 label="Password"
                 variant="outlined"
-                value={user.value}
+                value={user.password}
                 onChange={handleInputChange}
               />
             </div>
