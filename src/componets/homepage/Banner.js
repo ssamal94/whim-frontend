@@ -1,6 +1,6 @@
 import React from "react";
-import landingPhoto from "../assets/images/homebanner.jpg";
-import "../assets/styles/scss/style.scss";
+import landingPhoto from "../../assets/images/homebanner.jpg";
+import "../../assets/styles/scss/style.scss";
 
 function Banner() {
   return (

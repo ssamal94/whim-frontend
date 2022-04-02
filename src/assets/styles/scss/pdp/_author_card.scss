@@ -1,19 +1,30 @@
-.cardWrapper {
-  margin: 3rem;
+.authorCardComponentWrapper {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 100% !important;
+  .button {
+    margin: 2rem;
+  }
+  .flexWrapper {
+    display: flex;
+    margin-bottom: 1rem;
+    .nameAndIntroWrapper {
+      margin-left: 1rem;
+    }
+
+    .authorImage {
+      width: 15%;
+      overflow: hidden;
+      img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+
   .card {
-    margin-bottom: 2%;
-    width: 23.5%;
-    &:not(:nth-child(4n)) {
-      margin-right: 2%;
-    }
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-      transition: 0.3s;
-    }
+    height: 100%;
   }
   .rating {
     display: flex;
@@ -40,9 +51,6 @@
     }
     input:checked ~ label:before {
       opacity: 1;
-    }
-    input:checked ~ label:before {
-      opacity: 0.4;
     }
   }
 }

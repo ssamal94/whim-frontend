@@ -1,10 +1,11 @@
 import React from "react";
+import "../../assets/styles/scss/style.scss";
 
 function MarketingStatement() {
   return (
-    <div className="container my-3 mx-3" style={{ textAlign: "left" }}>
+    <div className="marketingWrapper">
       <h1>A broad selection of hobbies</h1>
-      <p style={{ paddingTop: "3px" }}>
+      <p>
         Choose from 1,000 online video hobbies with new additions published
         every month.
       </p>

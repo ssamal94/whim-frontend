@@ -1,10 +1,10 @@
 import React from "react";
-import UpdatePassword from "../componets/UpdatePassword";
+import UpdatePwd from "../componets/UpdatePassword";
 
 const UpdatePassword = () => {
   return (
     <>
-      <UpdatePassword></UpdatePassword>
+      <UpdatePwd></UpdatePwd>
     </>
   );
 };

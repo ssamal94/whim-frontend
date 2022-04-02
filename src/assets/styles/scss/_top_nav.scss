@@ -1,7 +1,9 @@
 /* No CSS */ /*# sourceMappingURL=top_nav.css.map */
 .topnav {
+  background-color: #e6eaf0 !important;
   position: sticky;
   top: 0;
+  z-index: 1;
   overflow: hidden;
   background-color: #f8f8ff;
   display: flex;
@@ -9,6 +11,7 @@
   align-items: center;
   .logo {
     padding: 14px;
+    margin-left: 1rem;
     &:hover {
       cursor: pointer;
     }
@@ -133,6 +136,10 @@
     margin: 1rem;
     .css-e53awj-MuiStack-root {
       border: 1px solid red;
+      &:hover {
+        transform: scale(1.05);
+        transition: 0.3s;
+      }
     }
     .fa-user:before {
       padding-right: 4px;
