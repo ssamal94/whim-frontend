@@ -7,3 +7,17 @@
 @import "./home.scss";
 @import "./_banner.scss";
 @import "./forgot_password";
+@import "./_non_functional_banner";
+@import "./_marketing_banner";
+@import "./pdp/product_card";
+@import "./pdp/about_course";
+@import "./pdp/author_card";
+@import "./pdp/pre_requisite";
+@import "./pdp/index_pdp";
+@import "./nowplaying/index_now_playing";
+@import "./nowplaying/product_card_nowplaying";
+@import "./nowplaying/media_player";
+@import "./nowplaying/content_list";
+* {
+  box-sizing: border-box;
+}
