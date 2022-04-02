@@ -4,14 +4,11 @@ div {
 .container-Non-Functional {
   background: #f7f9fa;
   border: 0;
-  width: 100vw;
-  position: relative;
+  margin-bottom: 5rem;
+  width: 100%;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
   box-sizing: border-box;
-  margin-bottom: 10px;
 }
 .sub-container {
   width: 100%;

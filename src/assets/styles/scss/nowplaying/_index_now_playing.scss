@@ -1,0 +1,20 @@
+.nowPlayigWrapper {
+  min-height: 90vh;
+  display: flex;
+  .leftPanWrapper {
+    width: 20%;
+    height: 100%;
+    .aboutCardWrapper {
+      width: 100%;
+      height: 40%;
+    }
+    .contentCardWrapper {
+      width: 100%;
+      height: 60%;
+    }
+  }
+  .rightPanWrapper {
+    width: 80%;
+    height: 100%;
+  }
+}

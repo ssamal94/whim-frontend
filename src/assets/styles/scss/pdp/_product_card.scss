@@ -1,19 +1,14 @@
-.cardWrapper {
+.productCardComponentWrapper {
   margin: 3rem;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 100% !important;
+  .button {
+    margin: 2rem;
+  }
   .card {
     margin-bottom: 2%;
-    width: 23.5%;
-    &:not(:nth-child(4n)) {
-      margin-right: 2%;
-    }
-    &:hover {
-      cursor: pointer;
-      transform: scale(1.05);
-      transition: 0.3s;
-    }
+    width: 70%;
   }
   .rating {
     display: flex;
@@ -40,9 +35,6 @@
     }
     input:checked ~ label:before {
       opacity: 1;
-    }
-    input:checked ~ label:before {
-      opacity: 0.4;
     }
   }
 }

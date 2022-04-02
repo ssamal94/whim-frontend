@@ -1,0 +1,29 @@
+.pdpWrapper {
+  .centerArea {
+    display: flex;
+    .leftArea {
+      width: 30%;
+    }
+    .rightArea {
+      width: 70%;
+      display: block;
+      .aboutCourseWrapper {
+        margin: 2rem;
+        min-height: 30%;
+        max-height: 40;
+      }
+      .authorAndPreReqWrapper {
+        display: flex;
+        margin: 2rem;
+        .preRequisite {
+          width: 45%;
+          max-height: 40% !important;
+        }
+        .authorCard {
+          width: 55%;
+          max-height: 40% !important;
+        }
+      }
+    }
+  }
+}

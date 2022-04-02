@@ -154,14 +154,15 @@ em {
     font-size: 1.1rem;
   }
   a {
-    color: var(--gray);
+    color: var(--gray) !important;
     display: block;
     align-items: center;
     span {
       margin: 0.2rem;
     }
     &:hover {
-      color: var(--white);
+      color: var(--white) !important;
+      cursor: pointer;
     }
   }
   .socialMedia {
@@ -177,6 +178,7 @@ em {
   text-align: Center;
   color: var(--gray);
   padding: 1rem 0;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 1020px) {

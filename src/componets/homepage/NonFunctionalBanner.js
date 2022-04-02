@@ -1,5 +1,3 @@
-import react from "react";
-
 function NonFunctionalBanner() {
   return (
     <div className="container-Non-Functional">

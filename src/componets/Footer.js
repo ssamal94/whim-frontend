@@ -1,29 +1,30 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <>
       <footer className="footer-wrapper">
-        <div class="footer">
+        <div className="footer">
           <section>
             <h3>Quick Links</h3>
-            <a href="#">Home</a>
-            <a href="#">About Us</a>
-            <a href="#">Blog</a>
-            <a href="#">Contact Us</a>
+            <a onClick={() => navigate("/")}>Home</a>
+            <a>About Us</a>
+            <a>Blog</a>
           </section>
 
           <section>
             <h3>Contact Us</h3>
             <a href="emailto:support@websitename.com">
               <span>
-                <i class="fa fa-envelope"></i>
+                <i className="fa fa-envelope"></i>
               </span>
-              <span>support@websitename.com</span>
+              <span>whimsix6@gmail.com</span>
             </a>
             <a href="tel:xxxxxxxxx">
               <span>
-                <i class="fa fa-phone"></i>
+                <i className="fa fa-phone"></i>
               </span>
               <span>(+x)-xxx-xxxx-xxxxx</span>
             </a>
@@ -33,30 +34,30 @@ const Footer = () => {
             <div className="socialMedia">
               <a href="https://www.youtube.com">
                 <span>
-                  <i class="fa fa-youtube"></i>
+                  <i className="fa fa-youtube"></i>
                 </span>
               </a>
               <a href="https://www.linkedin.com">
                 <span>
-                  <i class="fa fa-linkedin"></i>
+                  <i className="fa fa-linkedin"></i>
                 </span>
               </a>
               <a href="https://www.instagram.com">
                 <span>
-                  <i class="fa fa-instagram"></i>
+                  <i className="fa fa-instagram"></i>
                 </span>
               </a>
             </div>
           </section>
           <section>
             <h3>Other</h3>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms & Conditions</a>
-            <a href="#">Cookie Policy</a>
+            <a>Privacy Policy</a>
+            <a>Terms & Conditions</a>
+            <a>Cookie Policy</a>
           </section>
         </div>
       </footer>
-      <div class="sub-footer">
+      <div className="sub-footer">
         Copyright ©2022 All rights reserved | Code Cartel
       </div>
     </>
