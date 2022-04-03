@@ -98,10 +98,10 @@ function TopNav(props) {
       <a href="/">Category</a>
       <a href="/">Post Hobby</a>
 
-      <div class="search-container">
+      <div className="search-container">
         <input type="text" id="search-bar" placeholder="Search" />
         <i
-          class="fa fa-search search-icon"
+          className="fa fa-search search-icon"
           src="http://www.endlessicons.com/wp-content/uploads/2012/12/search-icon.png"
         ></i>
       </div>

@@ -5,16 +5,22 @@ import Banner from "../componets/Banner";
 import Footer from "../componets/Footer";
 import MarketingStatement from "../componets/MarketingStatement";
 import NonFunctionalBanner from "../componets/NonFunctionalBanner";
+import MembershipType from "../componets/MembershipType";
+import ConfirmSubscription from "../componets/ConfirmSubscription";
+import Payment from "../componets/Payment";
 
 function Home() {
   return (
     <>
       <TopNav user={localStorage.getItem("name")}></TopNav>
-      <Banner></Banner>
+      {/* <Banner></Banner>
       <MarketingStatement></MarketingStatement>
       <Card></Card>
       <NonFunctionalBanner></NonFunctionalBanner>
-      <Footer></Footer>
+      <Footer></Footer> */}
+      {/* <MembershipType></MembershipType> */}
+      {/* <ConfirmSubscription></ConfirmSubscription> */}
+      <Payment></Payment>
     </>
   );
 }
