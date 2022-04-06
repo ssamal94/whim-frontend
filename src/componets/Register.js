@@ -9,6 +9,8 @@ import {
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
+import useModal from "../hooks/useModal";
+import Dialog from "./Dialogue";
 
 /**@module Component_RegisterUser */
 /**
@@ -38,6 +40,10 @@ const Register = () => {
     passwordMessage: "",
     confirmPasswordMessage: "",
   });
+
+  //Destructure modal methods for dialog box
+  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
+    useModal();
 
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);
@@ -118,83 +124,96 @@ const Register = () => {
         if (res.data.message === "User Added") {
           navigate("/login");
         } else {
-          alert(res.data.message);
+          setAlertDescription(res.data.message);
+          setAlertStatus(true);
         }
       });
     }
   };
 
   return (
-    <div className="register-container">
-      <div className="container">
-        <div className="form">
-          <div className="logo">
-            <img src={logo} alt="something broke"></img>
+    <>
+      {alertStatus ? (
+        <Dialog
+          message={alertDescription}
+          toggleDialog={(status) => setAlertStatus(status)}
+        />
+      ) : null}
+      <div className="register-container">
+        <div className="container">
+          <div className="form">
+            <div className="logo">
+              <img
+                src={logo}
+                alt="something broke"
+                onClick={() => navigate("/")}
+              ></img>
+            </div>
+            <div className="pageName">
+              <span>Register</span>
+            </div>
+            <form onSubmit={registerUser} method="post">
+              <div className="flex-row">
+                <TextField
+                  name="name"
+                  value={user.name}
+                  label="Full Name"
+                  variant="outlined"
+                  helperText={helperTexts.nameMessage}
+                  error={nameError}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-row">
+                <TextField
+                  name="email"
+                  value={user.email}
+                  type="email"
+                  label="Email"
+                  variant="outlined"
+                  helperText={helperTexts.emailMessage}
+                  error={emailError}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-row">
+                <TextField
+                  name="password"
+                  value={user.password}
+                  type="password"
+                  label="Password"
+                  variant="outlined"
+                  helperText={helperTexts.passwordMessage}
+                  error={passwordError}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-row">
+                <TextField
+                  name="confirmPassword"
+                  value={user.confirmPassword}
+                  type="password"
+                  label="Confirm Password"
+                  variant="outlined"
+                  helperText={helperTexts.confirmPasswordMessage}
+                  error={confirmPasswordError}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex-row">
+                <input className="card-submit" type="submit" value="Register" />
+              </div>
+            </form>
+            <div className="login">
+              <span className="wrongAuth" onClick={() => navigate("/login")}>
+                Already registered? Login Here.
+              </span>
+            </div>
+            <div className="card-image-shadow"></div>
           </div>
-          <div className="pageName">
-            <span>Register</span>
-          </div>
-          <form onSubmit={registerUser} method="post">
-            <div className="flex-row">
-              <TextField
-                name="name"
-                value={user.name}
-                label="Full Name"
-                variant="outlined"
-                helperText={helperTexts.nameMessage}
-                error={nameError}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="flex-row">
-              <TextField
-                name="email"
-                value={user.email}
-                type="email"
-                label="Email"
-                variant="outlined"
-                helperText={helperTexts.emailMessage}
-                error={emailError}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="flex-row">
-              <TextField
-                name="password"
-                value={user.password}
-                type="password"
-                label="Password"
-                variant="outlined"
-                helperText={helperTexts.passwordMessage}
-                error={passwordError}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="flex-row">
-              <TextField
-                name="confirmPassword"
-                value={user.confirmPassword}
-                type="password"
-                label="Confirm Password"
-                variant="outlined"
-                helperText={helperTexts.confirmPasswordMessage}
-                error={confirmPasswordError}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="flex-row">
-              <input className="card-submit" type="submit" value="Register" />
-            </div>
-          </form>
-          <div className="login">
-            <span className="wrongAuth" onClick={() => navigate("/login")}>
-              Already registered? Login Here.
-            </span>
-          </div>
-          <div className="card-image-shadow"></div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

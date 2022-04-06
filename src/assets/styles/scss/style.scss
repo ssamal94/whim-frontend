@@ -18,6 +18,5 @@
 @import "./nowplaying/product_card_nowplaying";
 @import "./nowplaying/media_player";
 @import "./nowplaying/content_list";
-* {
-  box-sizing: border-box;
-}
+@import "./posthobby/post_hobby_index";
+@import "./posthobby/image_upload";

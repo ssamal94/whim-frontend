@@ -4,7 +4,7 @@ import { useState } from "react";
 const AboutCourse = () => {
   const [heading, setHeading] = useState("About this course:");
   const [content, setContent] = useState([
-    "Learn guitar chords that will allow you to play million of songs",
+    "Learn guitar chords that will allow you to play millions of songs",
     "Lear acoustic gitar technique",
   ]);
 
@@ -16,7 +16,7 @@ const AboutCourse = () => {
       {[...content].map((element, index) => {
         return (
           <>
-            <Typography variant="body2" align="left">
+            <Typography variant="body2" align="left" key={index}>
               <i className="fa fa-circle"></i> {content[index]}
             </Typography>
           </>

@@ -6,6 +6,8 @@ import ForgotPassword from "./views/ForgotPassword";
 import UpdatePassword from "./views/UpdatePassword";
 import PorductDescription from "./views/ProductDescription";
 import NowPlaying from "./views/NowPlaying";
+import PostHobby from "./views/PostHobby";
+import PrivateRoute from "./privateRoute/index";
 import {
   BrowserRouter as Router,
   Routes as Switch,
@@ -27,6 +29,14 @@ function App() {
           />
           <Route path="/product_description" element={<PorductDescription />} />
           <Route path="/now_playing" element={<NowPlaying />} />
+          <Route
+            path="/post_hobby"
+            element={
+              <PrivateRoute>
+                <PostHobby />
+              </PrivateRoute>
+            }
+          />
         </Switch>
       </Router>
     </div>

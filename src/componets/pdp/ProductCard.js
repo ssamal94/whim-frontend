@@ -1,5 +1,4 @@
 import "../../assets/styles/scss/style.scss";
-import { useState } from "react";
 import landingPhoto from "../../assets/images/homebanner.jpg";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +8,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = () => {
-  const [buttonText, setbuttonText] = useState("subscribe to this course");
+  const buttonText = "subscribe to this course";
   //router constant
   const navigate = useNavigate();
 
@@ -58,15 +57,15 @@ const ProductCard = () => {
                 (56894 ratings)
               </Typography>
               <input type="radio" name="rating" value="5" id="5" />
-              <label for="5">☆</label>
+              <label htmlFor="5">☆</label>
               <input type="radio" name="rating" value="4" id="4" />
-              <label for="4">☆</label>
+              <label htmlFor="4">☆</label>
               <input type="radio" name="rating" value="3" id="3" />
-              <label for="3">☆</label>
+              <label htmlFor="3">☆</label>
               <input type="radio" name="rating" value="2" id="2" />
-              <label for="2">☆</label>
+              <label htmlFor="2">☆</label>
               <input type="radio" name="rating" value="1" id="1" />
-              <label for="1">☆</label>
+              <label htmlFor="1">☆</label>
             </div>
             <Button className="button" onClick={handleClick}>
               {buttonText}

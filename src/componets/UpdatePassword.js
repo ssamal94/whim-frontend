@@ -4,6 +4,8 @@ import logo from "../assets/images/whim.png";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import useModal from "../hooks/useModal";
+import Dialog from "./Dialogue";
 
 /**@module Component_ForgotPassword */
 
@@ -21,6 +23,9 @@ const UpdatePassword = () => {
     password: "",
     confirmPassword: "",
   });
+  //Destructure modal methods for dialog box
+  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
+    useModal();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -46,16 +51,25 @@ const UpdatePassword = () => {
       )
       .then((res) => {
         if (res.data.status === "ok") {
-          alert(res.data.message);
+          setAlertDescription(res.data.message);
+          setAlertStatus(true);
           navigate("/login");
         } else {
-          alert(res.data.message);
+          setAlertDescription(res.data.message);
+          setAlertStatus(true);
         }
       });
   };
 
   return (
     <>
+      {alertStatus ? (
+        <Dialog
+          message={alertDescription}
+          toggleDialog={(status) => setAlertStatus(status)}
+        />
+      ) : null}
+
       <div className="forgotPwd-container">
         <div className="container">
           <div className="form">

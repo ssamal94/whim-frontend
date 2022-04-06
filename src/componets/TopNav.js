@@ -11,46 +11,12 @@ import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import { useNavigate } from "react-router-dom";
 
-function TopNav(props) {
+function TopNav() {
   //Route variable
   const navigate = useNavigate();
 
-  //Logout function
-  const logout = () => {
-    localStorage.clear();
-    navigate("/login");
-  };
-
-  //Text for login button
-  let loginButtonText;
-  let subMenu;
-  if (localStorage.getItem("token")) {
-    loginButtonText = (
-      <>
-        <span>
-          <i className="fa fa-user"></i>
-        </span>
-        <span className="userName">{props.user}</span>
-      </>
-    );
-    subMenu = (
-      <>
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
-        <MenuItem onClick={logout}>Logout</MenuItem>
-      </>
-    );
-  } else {
-    loginButtonText = (
-      <i className="userName" onClick={() => navigate("/login")}>
-        login
-      </i>
-    );
-    subMenu = "";
-  }
-
   //MI UI
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -84,6 +50,12 @@ function TopNav(props) {
     prevOpen.current = open;
   }, [open]);
 
+  //Logout function
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+
   return (
     <div className="topnav" id="myTopNav">
       <span className="logo">
@@ -95,8 +67,10 @@ function TopNav(props) {
           onClick={() => navigate("/")}
         />
       </span>
-      <a href="/">Category</a>
-      <a href="/">Post Hobby</a>
+      <span className="menuItem">Category</span>
+      <span className="menuItem" onClick={() => navigate("/post_hobby")}>
+        Post Hobby
+      </span>
 
       <div className="search-container">
         <input type="text" id="search-bar" placeholder="Search" />
@@ -117,7 +91,24 @@ function TopNav(props) {
               aria-haspopup="true"
               onClick={handleToggle}
             >
-              {loginButtonText}
+              {localStorage.getItem("token") ? (
+                <>
+                  <span>
+                    <i className="fa fa-user"></i>
+                  </span>
+                  <span className="userName">
+                    {localStorage.getItem("name")}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span>
+                    <i className="userName" onClick={() => navigate("/login")}>
+                      login
+                    </i>
+                  </span>
+                </>
+              )}
             </Button>
             <Popper
               open={open}
@@ -143,7 +134,13 @@ function TopNav(props) {
                         aria-labelledby="composition-button"
                         onKeyDown={handleListKeyDown}
                       >
-                        {subMenu}
+                        {localStorage.getItem("token") ? (
+                          <>
+                            <MenuItem>Profile</MenuItem>
+                            <MenuItem>My account</MenuItem>
+                            <MenuItem onClick={logout}>Logout</MenuItem>
+                          </>
+                        ) : null}
                       </MenuList>
                     </ClickAwayListener>
                   </Paper>
