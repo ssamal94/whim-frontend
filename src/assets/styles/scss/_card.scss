@@ -1,11 +1,12 @@
 .cardWrapper {
-  margin: 3rem;
+  padding: 3rem;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   .card {
     margin-bottom: 2%;
     width: 23.5%;
+    max-width: 23.5%;
     &:not(:nth-child(4n)) {
       margin-right: 2%;
     }
