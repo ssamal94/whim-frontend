@@ -8,14 +8,14 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = () => {
-  const buttonText = "subscribe to this course";
   //router constant
   const navigate = useNavigate();
 
   //Handle click on click of a card
   const handleClick = () => {
-    navigate("/now_playing");
-    //navigate("/subscribe");
+    localStorage.getItem("token")
+      ? navigate("/subscription")
+      : navigate("/login");
   };
 
   return (
@@ -44,9 +44,6 @@ const ProductCard = () => {
               Learn how to play the guitar in no time, with fun and easy
               courses, tutorials, and songs.
             </Typography>
-            <Typography gutterBottom variant="h6" align="left" component="div">
-              CA$7.99
-            </Typography>
             <div className="rating">
               <Typography
                 gutterBottom
@@ -68,7 +65,9 @@ const ProductCard = () => {
               <label htmlFor="1">☆</label>
             </div>
             <Button className="button" onClick={handleClick}>
-              {buttonText}
+              {localStorage.getItem("token")
+                ? "Subscribe to this course"
+                : "Login and subscribe"}
             </Button>
           </CardContent>
         </Card>

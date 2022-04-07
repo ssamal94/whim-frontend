@@ -8,6 +8,7 @@ import PorductDescription from "./views/ProductDescription";
 import NowPlaying from "./views/NowPlaying";
 import PostHobby from "./views/PostHobby";
 import PrivateRoute from "./privateRoute/index";
+import Subscription from "./views/Subscription";
 import {
   BrowserRouter as Router,
   Routes as Switch,
@@ -34,6 +35,14 @@ function App() {
             element={
               <PrivateRoute>
                 <PostHobby />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/subscription"
+            element={
+              <PrivateRoute>
+                <Subscription />
               </PrivateRoute>
             }
           />

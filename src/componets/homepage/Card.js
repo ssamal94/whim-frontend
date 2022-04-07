@@ -41,9 +41,6 @@ function ProductCard() {
             Learn how to play the guitar in no time, with fun and easy courses,
             tutorials, and songs.
           </Typography>
-          <Typography gutterBottom variant="h6" align="left" component="div">
-            CA$7.99
-          </Typography>
           <div className="rating">
             <Typography
               gutterBottom

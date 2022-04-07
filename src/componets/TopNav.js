@@ -58,7 +58,7 @@ function TopNav() {
 
   return (
     <div className="topnav" id="myTopNav">
-      <span className="logo">
+      <div className="logo">
         <img
           src={logo}
           width="50"
@@ -66,11 +66,10 @@ function TopNav() {
           alt="error"
           onClick={() => navigate("/")}
         />
-      </span>
-      <span className="menuItem">Category</span>
-      <span className="menuItem" onClick={() => navigate("/post_hobby")}>
+      </div>
+      <div className="menuItem" onClick={() => navigate("/post_hobby")}>
         Post Hobby
-      </span>
+      </div>
 
       <div className="search-container">
         <input type="text" id="search-bar" placeholder="Search" />
