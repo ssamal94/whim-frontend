@@ -13,9 +13,17 @@ const ProductCard = () => {
 
   //Handle click on click of a card
   const handleClick = () => {
-    localStorage.getItem("token")
-      ? navigate("/subscription")
-      : navigate("/login");
+    if (localStorage.getItem("token")) {
+      //If subscribed, redirect to take course
+      //Else redirect to subscription page
+      if (localStorage.getItem("isSubscribed") === "true") {
+        navigate("/now_playing");
+      } else {
+        navigate("/subscription");
+      }
+    } else {
+      navigate("/login");
+    }
   };
 
   return (
@@ -66,7 +74,7 @@ const ProductCard = () => {
             </div>
             <Button className="button" onClick={handleClick}>
               {localStorage.getItem("token")
-                ? "Subscribe to this course"
+                ? "Start this course"
                 : "Login and subscribe"}
             </Button>
           </CardContent>

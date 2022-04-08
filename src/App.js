@@ -8,7 +8,10 @@ import PorductDescription from "./views/ProductDescription";
 import NowPlaying from "./views/NowPlaying";
 import PostHobby from "./views/PostHobby";
 import PrivateRoute from "./privateRoute/index";
-import Subscription from "./views/Subscription";
+import SubscriptionType from "./views/SubscriptionType";
+import PaymentPage from "./views/Payment";
+import ConfirmSubscription from "./views/ConfirmSubscription";
+
 import {
   BrowserRouter as Router,
   Routes as Switch,
@@ -29,7 +32,14 @@ function App() {
             element={<UpdatePassword />}
           />
           <Route path="/product_description" element={<PorductDescription />} />
-          <Route path="/now_playing" element={<NowPlaying />} />
+          <Route
+            path="/now_playing"
+            element={
+              <PrivateRoute>
+                <NowPlaying />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/post_hobby"
             element={
@@ -42,7 +52,23 @@ function App() {
             path="/subscription"
             element={
               <PrivateRoute>
-                <Subscription />
+                <SubscriptionType />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/payment"
+            element={
+              <PrivateRoute>
+                <PaymentPage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/ConfirmSubscription"
+            element={
+              <PrivateRoute>
+                <ConfirmSubscription />
               </PrivateRoute>
             }
           />

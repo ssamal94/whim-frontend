@@ -5,13 +5,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
 
   .container {
     width: 40%;
@@ -29,6 +22,11 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    border: none;
+  }
+
+  .p-0 {
+    border: none;
   }
 
   * {
@@ -38,19 +36,9 @@
     font-family: "Montserrat", sans-serif;
   }
 
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-
-    padding: 30px 10px;
-  }
-
   .card {
     max-width: 500px;
     margin: auto;
-    color: black;
     // border-radius: 20 px;
   }
 
@@ -59,9 +47,8 @@
   }
 
   .container .h8 {
-    font-size: 30px;
-    font-weight: 800;
-    text-align: center;
+    font-family: unset;
+    font-size: 24.5px;
   }
 
   .btn.btn-primary {
@@ -71,15 +58,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 15px;
-    background-image: linear-gradient(
-      to right,
-      #77a1d3 0%,
-      #79cbca 51%,
-      #77a1d3 100%
-    );
-    border: none;
     transition: 0.5s;
-    background-size: 200% auto;
   }
 
   .btn.btn.btn-primary:hover {
@@ -94,18 +73,16 @@
   }
 
   .form-control {
-    color: black;
-    background-color: white;
-    border: 1px solid black;
     height: 60px;
     padding-left: 20px;
     vertical-align: middle;
   }
+  .pt-2 {
+    margin-left: 1rem;
+    width: 94%;
+  }
 
   .form-control:focus {
-    color: black;
-    background-color: white;
-    border: 2px solid black;
     box-shadow: none;
   }
 
@@ -144,5 +121,6 @@
 
   .card-submit:hover {
     background-color: #4183f5;
+    cursor: pointer;
   }
 }

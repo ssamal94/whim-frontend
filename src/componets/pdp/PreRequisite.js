@@ -15,7 +15,7 @@ const PreRequisite = () => {
       {[...content].map((element, index) => {
         return (
           <>
-            <Typography variant="body2" align="left">
+            <Typography variant="body2" align="left" key={index}>
               <i className="fa fa-circle"></i> {content[index]}
             </Typography>
           </>

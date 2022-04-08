@@ -44,6 +44,8 @@ const Login = () => {
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("name", res.data.name);
+        localStorage.setItem("isSubscribed", res.data.isSubscribed);
+        localStorage.setItem("email", res.data.email);
         navigate("/");
       } else {
         setAlertDescription(res.data.message);

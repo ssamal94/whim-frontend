@@ -1,8 +1,8 @@
-import * as React from "react";
+import { useState } from "react";
+
 import TopNav from "../componets/TopNav";
 import Footer from "../componets/Footer";
 import "../assets/styles/scss/style.scss";
-import ImageUpload from "../componets/posthobby/ImageUpload";
 import TextField from "@mui/material/TextField";
 import MenuItem from "@mui/material/MenuItem";
 import useProductUpload from "../hooks/useProductUpload";
@@ -17,14 +17,32 @@ import IconButton from "@mui/material/IconButton";
 import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
+import { useNavigate } from "react-router-dom";
 
 const PostHobby = () => {
   //CATEGORIES
   const categories = ["music", "art", "tech"];
 
+  //Router variable
+  const navigate = useNavigate();
+
+  //Is image icon required?
+  const [isRequired, setIsRequired] = useState("flex");
+
+  //Upload button text
+  const [buttonText, setButtonText] = useState("SELECT IMAGE");
+
+  //List of video names and links
+  const [videos, setVideos] = useState([]);
+  //current video and video link
+  const [currentVideo, setCurrentVideoName] = useState("");
+  const [currentVideoLink, setCurrentVideoLink] = useState("");
+
+  //Current image
+  const [currentImage, setCurrentImage] = useState("");
+
   //Hook variables
   const {
-    authorId,
     category,
     setCategory,
     coverImage,
@@ -59,23 +77,59 @@ const PostHobby = () => {
     setAboutCorse(event.target.value);
   };
 
+  //Handles change of video name
+  const handleVideoNameChanges = (event) => {
+    setCurrentVideoName(event.target.value);
+  };
+
+  //Handles change of video link
+  const handleVideoLinkChanges = (event) => {
+    setCurrentVideoLink(event.target.value);
+  };
+
+  //Handles image selection
+  const handleImageChanges = (e) => {
+    let files;
+    if (e.dataTransfer) {
+      files = e.dataTransfer.files;
+    } else if (e.target) {
+      files = e.target.files;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setCurrentImage(reader.result);
+      setIsRequired("none");
+      setButtonText("CHANGE IMAGE");
+    };
+    reader.readAsDataURL(files[0]);
+  };
+
   //A div to display all added videos
   const Demo = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
   }));
 
-  //
-  const [dense, setDense] = React.useState(false);
-  const [videoNames, setSecondary] = React.useState(["video 1"]);
+  //Add video to the upload list
+  const addVideo = () => {
+    let tempArray = [...videos];
+    tempArray.push({ name: currentVideo, link: currentVideoLink });
+    setVideos(tempArray);
+  };
 
-  //This fuction generates the list to display on added videos list
-  function generate(element) {
-    return [0, 1, 2, 3, 4, 5, 6, 7].map((value) =>
-      React.cloneElement(element, {
-        key: value,
-      })
-    );
-  }
+  //Remove video from the upload list
+  const removeVideo = (updateThis) => {
+    let tempArray = [...videos];
+    tempArray.forEach((element, index) => {
+      if (element.name === updateThis.name) {
+        tempArray.splice(index, 1);
+      }
+    });
+    setVideos(tempArray);
+  };
+
+  const PostHobby = () => {
+    console.log("uploded");
+  };
 
   return (
     <>
@@ -84,7 +138,43 @@ const PostHobby = () => {
         <div className="centerAreaWrapper">
           <div className="leftPan">
             <div className="imageUpload">
-              <ImageUpload />
+              <div id="uploadArea" className="upload-area">
+                <div className="upload-area__header">
+                  <h3 className="upload-area__title">Cover image</h3>
+                  <p className="upload-area__paragraph">
+                    Tip: When choosing your thumbnail, choose an image that
+                    shows a person making eye contact with the viewer. This
+                    subtle visual cue draws people in and makes them feel more
+                    connected.
+                  </p>
+                </div>
+
+                <div id="dropZoon" className="upload-area__drop-zoon drop-zoon">
+                  <span
+                    className="drop-zoon__icon"
+                    style={{ display: isRequired }}
+                  >
+                    <i className="fa fa-image"></i>
+                  </span>
+                  <img
+                    src={currentImage}
+                    alt="Please upload an image"
+                    className="uploadedImage"
+                  />
+                  <input
+                    type="file"
+                    id="fileInput"
+                    className="drop-zoon__file-input"
+                    accept="image/*"
+                    onChange={handleImageChanges}
+                  />
+                </div>
+                <label htmlFor="fileInput" style={{ "margin-top": "2rem" }}>
+                  <Button variant="outlined" component="span">
+                    {buttonText}
+                  </Button>
+                </label>
+              </div>
             </div>
           </div>
           <div className="centerPan">
@@ -144,23 +234,32 @@ const PostHobby = () => {
           <div className="rightPan">
             <div className="addedVideos">
               <Demo>
-                <List dense={dense}>
-                  {generate(
-                    <ListItem
-                      secondaryAction={
-                        <IconButton edge="end" aria-label="delete">
-                          <DeleteIcon />
-                        </IconButton>
-                      }
-                    >
-                      <ListItemAvatar>
-                        <Avatar>
-                          <OndemandVideoIcon />
-                        </Avatar>
-                      </ListItemAvatar>
-                      <ListItemText primary={videoNames ? videoNames[0] : ""} />
-                    </ListItem>
-                  )}
+                <List>
+                  {videos.map((element, index) => {
+                    return (
+                      <ListItem
+                        key={index}
+                        secondaryAction={
+                          <IconButton
+                            edge="end"
+                            aria-label="delete"
+                            onClick={() => removeVideo(element)}
+                          >
+                            <DeleteIcon />
+                          </IconButton>
+                        }
+                      >
+                        <ListItemAvatar>
+                          <Avatar>
+                            <OndemandVideoIcon />
+                          </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                          primary={element.name ? element.name : ""}
+                        />
+                      </ListItem>
+                    );
+                  })}
                 </List>
               </Demo>
             </div>
@@ -170,9 +269,9 @@ const PostHobby = () => {
                   id="filled-multiline-static"
                   label="Video title"
                   sx={{ width: "30ch" }}
-                  value={""}
+                  value=""
                   helperText="Plese enter a video title"
-                  // onChange={""}
+                  onChange={handleVideoNameChanges}
                 />
               </div>
               <div className="videoLink">
@@ -180,13 +279,15 @@ const PostHobby = () => {
                   id="filled-multiline-static"
                   label="Video link"
                   sx={{ width: "30ch" }}
-                  value={""}
+                  value=""
                   helperText="Video link goes here"
-                  //onChange={""}
+                  onChange={handleVideoLinkChanges}
                 />
               </div>
               <div className="addVideoButton">
-                <Button variant="contained">Add video</Button>
+                <Button variant="contained" onClick={addVideo}>
+                  Add video
+                </Button>
               </div>
             </div>
           </div>
@@ -195,6 +296,7 @@ const PostHobby = () => {
               className="upload"
               variant="outlined"
               endIcon={<SendIcon />}
+              onClick={PostHobby}
             >
               Upload Course
             </Button>
@@ -202,6 +304,7 @@ const PostHobby = () => {
               className="cancel"
               variant="outlined"
               startIcon={<DeleteIcon />}
+              onClick={() => navigate("/")}
             >
               Cancel
             </Button>
