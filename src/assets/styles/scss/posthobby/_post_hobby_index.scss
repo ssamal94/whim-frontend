@@ -1,0 +1,115 @@
+.postHobbyWrapper {
+  .centerAreaWrapper {
+    margin: 1rem 3rem;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    .leftPan {
+    }
+    .centerPan {
+      margin: 0 1rem;
+      align-content: flex-start;
+      .titleAbout {
+        display: block;
+        .title {
+          display: flex;
+        }
+        .about {
+          display: flex;
+          margin: 1rem 0;
+        }
+      }
+      .preRequisite {
+        display: flex;
+      }
+      .category {
+        display: flex;
+        margin: 1rem 0;
+      }
+    }
+    .rightPan {
+      .addedVideos {
+        max-height: 40vh;
+        overflow-y: auto;
+        margin-bottom: 1rem;
+        border: 1px solid var(--clr-light-blue);
+      }
+      .videoLinks {
+        display: block;
+        max-height: 75vh;
+        overflow-y: auto;
+        .videoTitle {
+          margin-top: 1rem;
+        }
+        .videoLink {
+          margin-top: 1rem;
+        }
+        .addVideoButton {
+          margin-top: 0.7rem;
+        }
+      }
+    }
+    .uploadButton {
+      margin: 5rem;
+      .upload {
+        margin-bottom: 3rem;
+      }
+      .cancel {
+        margin-top: 3rem;
+      }
+    }
+  }
+  @media screen and(max-width:600px) {
+    .centerAreaWrapper {
+      display: block;
+      margin: 3rem;
+      min-height: 50vh;
+      .leftPan {
+        .upload-area {
+          max-height: 50vh;
+          margin: auto;
+        }
+      }
+      .centerPan {
+        margin: 2rem;
+        align-content: center;
+        .MuiTextField-root {
+          width: 30ch;
+        }
+        .titleAbout {
+          display: block;
+          .title {
+            display: block;
+          }
+          .about {
+            display: block;
+            margin: 1rem 0;
+          }
+        }
+        .preRequisite {
+          display: block;
+        }
+        .category {
+          display: block;
+          margin: 1rem 0;
+        }
+      }
+      .rightPan {
+        .videoLinks {
+          display: block;
+          margin: 1rem 0;
+        }
+      }
+      .uploadButton {
+        margin: 5rem;
+        display: flex;
+        .upload {
+          margin: 1rem;
+        }
+        .cancel {
+          margin: 1rem;
+        }
+      }
+    }
+  }
+}

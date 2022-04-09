@@ -97,7 +97,7 @@ em {
   background-color: var(--darklite);
 }
 
-@media (max-width: 820px) {
+@media screen and (max-width: 820px) {
   .btn1,
   .btn2 {
     padding: 10px 15px;
@@ -181,7 +181,7 @@ em {
   font-size: 0.8rem;
 }
 
-@media (max-width: 1020px) {
+@media screen and (max-width: 1020px) {
   .footer {
     display: block;
   }
@@ -189,7 +189,20 @@ em {
     padding: 1rem 1rem;
   }
   .footer {
-    width: 49%;
+    width: 100%;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    display: block;
+  }
+  .footer section {
+    padding: 1rem 1rem;
+  }
+  .footer {
+    width: 100%;
     display: inline-block;
   }
 }

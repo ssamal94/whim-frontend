@@ -1,0 +1,73 @@
+.membership-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  .formControlLabel1 {
+    margin: 2rem 0;
+  }
+  .formControlLabel2 {
+    margin: 2rem 0;
+  }
+  .container {
+    width: 40%;
+    padding: 3rem;
+  }
+  .title {
+    font-family: unset;
+    font-size: 1.5rem;
+  }
+  .form {
+    border-radius: 15px;
+    background-color: #fff;
+    min-width: 100%;
+    padding: 4rem;
+    box-shadow: -5px 7px 32px 0px rgba(0, 0, 0, 0.35);
+    .description {
+      margin-left: 1rem;
+    }
+    .heading {
+      margin-bottom: 2rem;
+    }
+  }
+
+  .label {
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .para {
+    text-align: left;
+    line-height: 5mm;
+    font-size: 0.9rem;
+  }
+
+  .button {
+    margin-top: 3rem;
+    .card-submit {
+      width: 100%;
+      font-family: unset;
+      margin: 0 auto;
+      color: #fff;
+      font-size: 4mm;
+      font-weight: 500;
+      height: 50px;
+      border: none;
+      border-radius: 5px;
+      background-color: #14a76c;
+      transition: background-color 250ms ease-in-out;
+      &:hover {
+        background-color: #4183f5;
+        cursor: pointer;
+      }
+    }
+  }
+}

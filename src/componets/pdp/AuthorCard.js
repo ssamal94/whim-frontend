@@ -1,29 +1,52 @@
 import "../../assets/styles/scss/style.scss";
-import { useState } from "react";
-import landingPhoto from "../../assets/images/homebanner.jpg";
+import { useEffect, useState } from "react";
+import defaultImage from "../../assets/images/defaultCardImage.webp";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
+import axios from "axios";
 
 const AuthorCard = () => {
-  const [name, seName] = useState("Author name");
-  const [intro, seIntro] = useState("This is a sampe intro, author is genius!");
-  const [about, seAbout] = useState(
+  const [name, setName] = useState("Author name");
+  const [intro, setIntro] = useState(
+    "This is a sampe intro, author is genius!"
+  );
+  const [about, setAbout] = useState(
     "Hi! I am a sample author. 8 years of professional experience on the topic. I create the best content on internet."
   );
+
+  useEffect(() => {
+    setName(localStorage.getItem("authorName"));
+    axios
+      .post("http://localhost:9032/getAuthor", {
+        id: localStorage.getItem("authorId"),
+      })
+      .then((res) => {
+        if (res.data.message === "ok") {
+          setIntro(res.data.intro);
+          setAbout(res.data.about);
+        } else alert(res.data.message);
+      });
+  });
 
   return (
     <>
       <div className="authorCardComponentWrapper">
         <Card className="card">
           <CardContent>
-            <Typography gutterBottom align="center">
+            <Typography
+              gutterBottom
+              align="center"
+              style={{ fontSize: "1.3rem" }}
+            >
               About author
             </Typography>
             <div className="flexWrapper">
               <div className="authorImage">
-                <img src={landingPhoto} alt="something broke" />
+                <img
+                  src={localStorage.getItem("profilePic") || defaultImage}
+                  alt="something broke"
+                />
               </div>
               <div className="nameAndIntroWrapper">
                 <Typography
@@ -39,6 +62,7 @@ const AuthorCard = () => {
                   align="left"
                   color="text.secondary"
                   component="div"
+                  style={{ fontSize: "1rem" }}
                 >
                   {intro}
                 </Typography>

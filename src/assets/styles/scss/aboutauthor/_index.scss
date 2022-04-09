@@ -1,0 +1,67 @@
+.authorDetailsWrapper {
+  margin: 1rem 3rem;
+  min-height: 90vh;
+  .topPan {
+    .authorName {
+      margin-top: 0.5rem;
+      font-weight: 600;
+      font-size: 2rem;
+    }
+  }
+  .bottomPan {
+    display: flex;
+    .leftPan {
+      margin: auto;
+      height: 100%;
+      width: 30%;
+      .imageUpload {
+        .upload-area__header {
+          margin-top: 3rem;
+        }
+        .imageButton {
+          margin-top: 3rem;
+        }
+      }
+    }
+    .rightPan {
+      margin: auto;
+      height: 100%;
+      width: 70%;
+      .textfields {
+        float: left;
+        align-content: flex-end;
+        .intro {
+          margin-bottom: 3rem;
+        }
+      }
+      .uploadButton {
+        margin-top: 10rem;
+      }
+    }
+  }
+}
+@media screen and(max-width:600px) {
+  .authorDetailsWrapper {
+    display: block;
+    .leftPan {
+      margin-bottom: 2rem;
+      width: 100%;
+      .imageUpload {
+        width: 100%;
+        min-width: 35vh;
+        transform: translate(3.5rem, 0rem);
+      }
+    }
+
+    .rightPan {
+      width: 100% !important;
+      margin-left: 0;
+      .intro {
+        width: 100%;
+      }
+      .description {
+        width: 100%;
+      }
+    }
+  }
+}
