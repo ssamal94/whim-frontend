@@ -3,7 +3,7 @@ import { useState } from "react";
 const useProductUpload = () => {
   const [authorId, setAuthorId] = useState("");
   const [category, setCategory] = useState("");
-  const [coverImage, setCoverImage] = useState({});
+  const [coverImage, setCoverImage] = useState("");
   const [title, setTitle] = useState("");
   const [aboutCorse, setAboutCorse] = useState("");
   const [preRequisite, setPreRequisite] = useState("");

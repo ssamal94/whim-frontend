@@ -18,6 +18,7 @@ import OndemandVideoIcon from "@mui/icons-material/OndemandVideo";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const PostHobby = () => {
   //CATEGORIES
@@ -30,16 +31,11 @@ const PostHobby = () => {
   const [isRequired, setIsRequired] = useState("flex");
 
   //Upload button text
-  const [buttonText, setButtonText] = useState("SELECT IMAGE");
+  const [buttonText, setButtonText] = useState("UPLOAD IMAGE");
 
-  //List of video names and links
-  const [videos, setVideos] = useState([]);
   //current video and video link
   const [currentVideo, setCurrentVideoName] = useState("");
   const [currentVideoLink, setCurrentVideoLink] = useState("");
-
-  //Current image
-  const [currentImage, setCurrentImage] = useState("");
 
   //Hook variables
   const {
@@ -97,7 +93,7 @@ const PostHobby = () => {
     }
     const reader = new FileReader();
     reader.onload = () => {
-      setCurrentImage(reader.result);
+      setCoverImage(reader.result);
       setIsRequired("none");
       setButtonText("CHANGE IMAGE");
     };
@@ -111,24 +107,56 @@ const PostHobby = () => {
 
   //Add video to the upload list
   const addVideo = () => {
-    let tempArray = [...videos];
+    let tempArray = [...videoLinks];
     tempArray.push({ name: currentVideo, link: currentVideoLink });
-    setVideos(tempArray);
+    setVideoLinks(tempArray);
   };
 
   //Remove video from the upload list
   const removeVideo = (updateThis) => {
-    let tempArray = [...videos];
+    let tempArray = [...videoLinks];
     tempArray.forEach((element, index) => {
       if (element.name === updateThis.name) {
         tempArray.splice(index, 1);
       }
     });
-    setVideos(tempArray);
+    setVideoLinks(tempArray);
   };
 
-  const PostHobby = () => {
-    console.log("uploded");
+  const postHobby = () => {
+    console.log({
+      category,
+      coverImage,
+      title,
+      aboutCorse,
+      preRequisite,
+      videoLinks,
+    });
+    const email = localStorage.getItem("email");
+    axios
+      .post("http://localhost:9032/addPost", {
+        category,
+        coverImage,
+        title,
+        aboutCorse,
+        preRequisite,
+        videoLinks,
+        email,
+      })
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === "ok") {
+          if (res.data.isAuthor === "true") {
+            alert("post added");
+            navigate("/");
+          } else {
+            alert("create your author page");
+            navigate("/authorDetails");
+          }
+        } else {
+          alert(res.data);
+        }
+      });
   };
 
   return (
@@ -157,8 +185,8 @@ const PostHobby = () => {
                     <i className="fa fa-image"></i>
                   </span>
                   <img
-                    src={currentImage}
-                    alt="Please upload an image"
+                    src={coverImage}
+                    alt="Please upload something to preview"
                     className="uploadedImage"
                   />
                   <input
@@ -169,7 +197,7 @@ const PostHobby = () => {
                     onChange={handleImageChanges}
                   />
                 </div>
-                <label htmlFor="fileInput" style={{ "margin-top": "2rem" }}>
+                <label htmlFor="fileInput" style={{ marginTop: "2rem" }}>
                   <Button variant="outlined" component="span">
                     {buttonText}
                   </Button>
@@ -235,7 +263,7 @@ const PostHobby = () => {
             <div className="addedVideos">
               <Demo>
                 <List>
-                  {videos.map((element, index) => {
+                  {videoLinks.map((element, index) => {
                     return (
                       <ListItem
                         key={index}
@@ -269,7 +297,7 @@ const PostHobby = () => {
                   id="filled-multiline-static"
                   label="Video title"
                   sx={{ width: "30ch" }}
-                  value=""
+                  value={currentVideo}
                   helperText="Plese enter a video title"
                   onChange={handleVideoNameChanges}
                 />
@@ -279,7 +307,7 @@ const PostHobby = () => {
                   id="filled-multiline-static"
                   label="Video link"
                   sx={{ width: "30ch" }}
-                  value=""
+                  value={currentVideoLink}
                   helperText="Video link goes here"
                   onChange={handleVideoLinkChanges}
                 />
@@ -296,7 +324,7 @@ const PostHobby = () => {
               className="upload"
               variant="outlined"
               endIcon={<SendIcon />}
-              onClick={PostHobby}
+              onClick={postHobby}
             >
               Upload Course
             </Button>
