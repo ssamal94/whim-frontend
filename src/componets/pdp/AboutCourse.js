@@ -1,25 +1,32 @@
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AboutCourse = () => {
-  const [heading, setHeading] = useState("About this course:");
-  const [content, setContent] = useState([
-    "Learn guitar chords that will allow you to play millions of songs",
-    "Lear acoustic gitar technique",
-  ]);
+  const [content, setContent] = useState("");
+
+  useEffect(() => {
+    setContent(localStorage.getItem("aboutCorse").split("."));
+  }, []);
 
   return (
     <div className="aboutCourseWrapper">
       <Typography gutterBottom variant="h6" align="left">
-        {heading}
+        About this course:
       </Typography>
       {[...content].map((element, index) => {
+        let icon = "";
+        if (content[index].trim()) {
+          icon = <i className="fa fa-circle"></i>;
+        }
         return (
-          <>
-            <Typography variant="body2" align="left" key={index}>
-              <i className="fa fa-circle"></i> {content[index]}
-            </Typography>
-          </>
+          <Typography
+            variant="body2"
+            align="left"
+            key={index}
+            style={{ fontSize: "1rem" }}
+          >
+            {icon} {content[index]}
+          </Typography>
         );
       })}
     </div>

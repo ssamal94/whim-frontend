@@ -1,5 +1,5 @@
 import "../../assets/styles/scss/style.scss";
-import landingPhoto from "../../assets/images/homebanner.jpg";
+import landingPhoto from "../../assets/images/defaultCardImage.webp";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -33,12 +33,12 @@ const ProductCard = () => {
           <CardMedia
             component="img"
             height="140"
-            image={landingPhoto}
+            image={localStorage.getItem("coverImage") || landingPhoto}
             alt="something broke*"
           />
           <CardContent>
             <Typography gutterBottom variant="h6" align="left" component="div">
-              Learn Guitar - Noob to pro in 4 weeks
+              {localStorage.getItem("title")}
             </Typography>
             <Typography
               gutterBottom
@@ -46,11 +46,15 @@ const ProductCard = () => {
               align="left"
               component="div"
             >
-              By - Arthur Gunn
+              By - {localStorage.getItem("name")}
             </Typography>
-            <Typography variant="body2" align="left" color="text.secondary">
-              Learn how to play the guitar in no time, with fun and easy
-              courses, tutorials, and songs.
+            <Typography
+              variant="body2"
+              align="left"
+              color="text.secondary"
+              style={{ fontSize: "1rem" }}
+            >
+              Category: {localStorage.getItem("category")}
             </Typography>
             <div className="rating">
               <Typography
