@@ -3,12 +3,16 @@ import axios from "axios";
 import "../assets/styles/scss/style.scss";
 import TopNav from "../componets/TopNav";
 import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const MyAccount = () => {
   //State variable for button text
   const [buttonText, setButtonText] = useState("Subscribe to whim");
+
+  //State variable for
   return (
     <div className="myAccountWrapper">
       <TopNav />
@@ -53,7 +57,30 @@ const MyAccount = () => {
       <div className="bottomPan">
         <div className="posts">
           <div className="heading">Your posts</div>
-          <div className="listView"></div>
+          <div className="listView">
+            <Card sx={{ "background-color": "none" }}>
+              <CardContent>
+                <div className="postCards">
+                  <div className="cardImage">
+                    <img
+                      src={localStorage.getItem("coverImage")}
+                      alt="post image"
+                    />
+                  </div>
+                  <div className="cardTitle">
+                    <Typography variant="h6" className="heading">
+                      Post title
+                    </Typography>
+                  </div>
+                  <div className="deleteButton">
+                    <Button variant="outlined">
+                      <DeleteIcon />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     </div>

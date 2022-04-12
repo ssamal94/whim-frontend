@@ -71,5 +71,37 @@
       font-size: 1.3rem;
       font-weight: 600;
     }
+    .listView {
+      width: 95%;
+      margin: 1rem auto;
+      .postCards {
+        display: flex;
+        width: 100% !important;
+        margin: 1rem 0;
+        padding: 0.5rem;
+        background-color: #e0e0e2;
+        &:hover {
+          transform: scale(1.003);
+          transition: 0.3s;
+          cursor: pointer;
+        }
+        .cardImage {
+          img {
+            width: 5rem;
+          }
+        }
+        .cardTitle {
+          width: 90%;
+          align-items: center;
+          .heading {
+            margin-top: 1rem;
+          }
+        }
+        .deleteButton {
+          float: right;
+          margin-top: 0.7rem;
+        }
+      }
+    }
   }
 }
