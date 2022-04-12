@@ -83,7 +83,7 @@ function App() {
             }
           />
           <Route
-            path="/authorDetails"
+            path="/myAccount"
             element={
               <PrivateRoute>
                 <MyAccount />
