@@ -149,14 +149,13 @@ const MyAccount = () => {
             {data.map((element) => {
               return (
                 <>
-                  <Card
-                    sx={{ backgroundColor: "none" }}
-                    key={element._id}
-                    onClick={() => openPost(element)}
-                  >
+                  <Card sx={{ backgroundColor: "none" }} key={element._id}>
                     <CardContent>
                       <div className="postCards">
-                        <div className="cardImage">
+                        <div
+                          className="cardImage"
+                          onClick={() => openPost(element)}
+                        >
                           <img
                             src={element.coverImage || defaultPic}
                             alt="cover pic"
@@ -170,13 +169,14 @@ const MyAccount = () => {
                         <div
                           className="deleteButton"
                           onClick={() => deletePost(element)}
-                        ></div>
+                        >
+                          <Button variant="outlined">
+                            <DeleteIcon />
+                          </Button>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
-                  <Button variant="outlined">
-                    <DeleteIcon />
-                  </Button>
                 </>
               );
             })}

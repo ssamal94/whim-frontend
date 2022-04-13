@@ -80,12 +80,12 @@
         margin: 1rem 0;
         padding: 0.5rem;
         background-color: #e0e0e2;
-        &:hover {
-          transform: scale(1.003);
-          transition: 0.3s;
-          cursor: pointer;
-        }
         .cardImage {
+          &:hover {
+            transform: scale(1.05);
+            transition: 0.3s;
+            cursor: pointer;
+          }
           img {
             width: 5rem;
           }
