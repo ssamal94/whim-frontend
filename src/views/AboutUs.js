@@ -2,6 +2,7 @@ import React from "react";
 import "../assets/styles/scss/style.scss";
 import puneetImage from "../assets/images/puneet.png";
 import shubhamImage from "../assets/images/shubham.png";
+import swagatImage from "../assets/images/swagat.jpeg";
 import TopNav from "../componets/TopNav";
 import Footer from "../componets/Footer";
 
@@ -56,7 +57,7 @@ const AboutUs = () => {
             <div className="flip-card-inner">
               <div className="flip-card-front">
                 <img
-                  src={puneetImage}
+                  src={swagatImage}
                   alt="Avatar"
                   style={{ width: "300px", height: "400px" }}
                 />
@@ -66,7 +67,8 @@ const AboutUs = () => {
                 <h5 className="role">Full Stack Software Developer</h5>
                 <div className="description">
                   <p style={{ color: "azure" }}>
-                    Skills : JAVA, C#, HTML, CSS, JavaScript, React.js
+                    Skills : JavaScript, React.js, Vue.js, Node.js, HTML, CSS,
+                    SCSS, JAVA, C#
                   </p>
 
                   <p style={{ color: "azure" }}>
@@ -82,10 +84,7 @@ const AboutUs = () => {
                   </p>
                 </div>
                 <div className="quote">
-                  <p style={{ color: "azure" }}>
-                    "Life isn't about finding yourself. Life is about creating
-                    yourself."
-                  </p>
+                  <p style={{ color: "azure" }}>"Passion led us here."</p>
                 </div>
               </div>
             </div>

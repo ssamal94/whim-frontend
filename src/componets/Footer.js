@@ -10,7 +10,7 @@ const Footer = () => {
           <section>
             <h3>Quick Links</h3>
             <a onClick={() => navigate("/")}>Home</a>
-            <a onClick={navigate("/aboutUs")}>About Us</a>
+            <a onClick={() => navigate("/aboutUs")}>About Us</a>
             <a>Blog</a>
           </section>
 
