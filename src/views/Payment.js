@@ -66,10 +66,7 @@ function Payment() {
                   </div>
                   <div className="col-6">
                     <div className="d-flex flex-column">
-                      <p
-                        className="text mb-1"
-                        style={{ "margin-left": "1rem" }}
-                      >
+                      <p className="text mb-1" style={{ marginLeft: "1rem" }}>
                         CVV/CVC
                       </p>
                       <input

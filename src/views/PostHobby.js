@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import TopNav from "../componets/TopNav";
 import Footer from "../componets/Footer";
@@ -158,6 +158,13 @@ const PostHobby = () => {
         }
       });
   };
+
+  useEffect(() => {
+    console.log(localStorage.getItem("isSubscribed"));
+    if (localStorage.getItem("isSubscribed") === "false") {
+      navigate("/subscription");
+    }
+  }, []);
 
   return (
     <>

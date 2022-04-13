@@ -14,7 +14,7 @@ const MyAccount = () => {
   const navigate = useNavigate();
 
   //State variable for button text
-  const [buttonText, setButtonText] = useState("Subscribe to whim");
+  const [buttonText, setButtonText] = useState("");
 
   //State variable for to store list of posts
   const [data, setData] = useState([]);
@@ -22,6 +22,7 @@ const MyAccount = () => {
   //State variable for About author
   const [aboutAuthor, setAboutAuthor] = useState("");
 
+  //On load of page, make service call
   useEffect(() => {
     axios
       .post("http://localhost:9032/getUserPosts", {
@@ -31,6 +32,11 @@ const MyAccount = () => {
         if (res.data.message === "ok") {
           setData(res.data.results);
           setAboutAuthor(res.data.aboutAuthor);
+          if (res.data.isSubscribed === true) {
+            setButtonText("Unsubscribe from WHIM");
+          } else {
+            setButtonText("Subscribe to WHIM");
+          }
         } else if (res.message === "incomplete profile") {
           navigate("/authorDetails");
         } else {
@@ -40,7 +46,7 @@ const MyAccount = () => {
   }, []);
 
   //Handle click on click of a card
-  const handleClick = (element) => {
+  const openPost = (element) => {
     localStorage.setItem("authorId", element.authorId);
     localStorage.setItem("authorName", element.authorName);
     localStorage.setItem("profilePic", element.authorImage);
@@ -51,6 +57,51 @@ const MyAccount = () => {
     localStorage.setItem("preRequisite", element.preRequisite);
     localStorage.setItem("videoLinks", JSON.stringify(element.videoLinks));
     navigate("/product_description");
+  };
+
+  //Delete a post
+  const deletePost = (post) => {
+    axios
+      .post("http://localhost:9032/deletePost", { postId: post._id })
+      .then((res) => {
+        if (res.body.message === "ok") {
+          localStorage.setItem("aboutCorse", "");
+          localStorage.setItem("category", "");
+          localStorage.setItem("coverImage", "");
+          localStorage.setItem("authorId", "");
+          localStorage.setItem("authorName", "");
+          localStorage.setItem("videoLinks", "");
+          localStorage.setItem("title", "");
+          localStorage.setItem("preRequisite", "");
+          alert("post deleted");
+        } else {
+          alert(res.body.message);
+        }
+      });
+  };
+
+  //Chagnge subscription
+  const changeSubscription = () => {
+    if (buttonText === "Subscribe to WHIM") {
+      navigate("/subscription");
+    } else {
+      axios
+        .post("http://localhost:9032/unsubscribe", {
+          email: localStorage.getItem("email"),
+        })
+        .then((res) => {
+          if (res.data.status === "ok") {
+            localStorage.setItem("isSubscribed", false);
+            alert(
+              "Sorry to see you leave! You are unsubscribed from WHIM, you will not be able to access or post any content however, if you have any existing post as an Author, your post will stay active till you delete it."
+            );
+          } else {
+            alert(
+              "Something went wrong, please try again after sometime. If the problem still persists, please contat us for help."
+            );
+          }
+        });
+    }
   };
 
   return (
@@ -77,7 +128,9 @@ const MyAccount = () => {
                   </h6>
                 </div>
                 <div className="subscribeButton">
-                  <Button variant="outlined">{buttonText}</Button>
+                  <Button variant="outlined" onClick={changeSubscription}>
+                    {buttonText}
+                  </Button>
                 </div>
               </div>
             </div>
@@ -95,32 +148,36 @@ const MyAccount = () => {
           <div className="listView">
             {data.map((element) => {
               return (
-                <Card
-                  sx={{ backgroundColor: "none" }}
-                  key={element._id}
-                  onClick={() => handleClick(element)}
-                >
-                  <CardContent>
-                    <div className="postCards">
-                      <div className="cardImage">
-                        <img
-                          src={element.coverImage || defaultPic}
-                          alt="cover pic"
-                        />
+                <>
+                  <Card
+                    sx={{ backgroundColor: "none" }}
+                    key={element._id}
+                    onClick={() => openPost(element)}
+                  >
+                    <CardContent>
+                      <div className="postCards">
+                        <div className="cardImage">
+                          <img
+                            src={element.coverImage || defaultPic}
+                            alt="cover pic"
+                          />
+                        </div>
+                        <div className="cardTitle">
+                          <Typography variant="h6" className="heading">
+                            {element.title}
+                          </Typography>
+                        </div>
+                        <div
+                          className="deleteButton"
+                          onClick={() => deletePost(element)}
+                        ></div>
                       </div>
-                      <div className="cardTitle">
-                        <Typography variant="h6" className="heading">
-                          {element.title}
-                        </Typography>
-                      </div>
-                      <div className="deleteButton">
-                        <Button variant="outlined">
-                          <DeleteIcon />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                  <Button variant="outlined">
+                    <DeleteIcon />
+                  </Button>
+                </>
               );
             })}
           </div>
