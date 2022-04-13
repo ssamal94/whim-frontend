@@ -160,7 +160,6 @@ const PostHobby = () => {
   };
 
   useEffect(() => {
-    console.log(localStorage.getItem("isSubscribed"));
     if (localStorage.getItem("isSubscribed") === "false") {
       navigate("/subscription");
     }

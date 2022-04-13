@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Footer = () => {
   const navigate = useNavigate();
   return (
-    <>
+    <div className="foot">
       <footer className="footer-wrapper">
         <div className="footer">
           <section>
@@ -60,7 +60,7 @@ const Footer = () => {
       <div className="sub-footer">
         Copyright ©2022 All rights reserved | Code Cartel
       </div>
-    </>
+    </div>
   );
 };
 export default Footer;

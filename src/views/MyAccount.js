@@ -13,6 +13,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 const MyAccount = () => {
   const navigate = useNavigate();
 
+  //Profile pic
+  const [profilePic, setProfilePic] = useState("");
+
   //State variable for button text
   const [buttonText, setButtonText] = useState("");
 
@@ -32,12 +35,13 @@ const MyAccount = () => {
         if (res.data.message === "ok") {
           setData(res.data.results);
           setAboutAuthor(res.data.aboutAuthor);
+          setProfilePic(res.data.pic);
           if (res.data.isSubscribed === true) {
             setButtonText("Unsubscribe from WHIM");
           } else {
             setButtonText("Subscribe to WHIM");
           }
-        } else if (res.message === "incomplete profile") {
+        } else if (res.data.message === "incomplete profile") {
           navigate("/authorDetails");
         } else {
           alert(res.data.message);
@@ -112,10 +116,7 @@ const MyAccount = () => {
           <div className="card">
             <div className="card-header">
               <div className="card-image">
-                <img
-                  src={localStorage.getItem("profilePic")}
-                  alt="profile pic"
-                />
+                <img src={profilePic} alt="profile pic" />
               </div>
               <div className="card-profile">
                 <div className="card-details">
@@ -148,36 +149,34 @@ const MyAccount = () => {
           <div className="listView">
             {data.map((element) => {
               return (
-                <>
-                  <Card sx={{ backgroundColor: "none" }} key={element._id}>
-                    <CardContent>
-                      <div className="postCards">
-                        <div
-                          className="cardImage"
-                          onClick={() => openPost(element)}
-                        >
-                          <img
-                            src={element.coverImage || defaultPic}
-                            alt="cover pic"
-                          />
-                        </div>
-                        <div className="cardTitle">
-                          <Typography variant="h6" className="heading">
-                            {element.title}
-                          </Typography>
-                        </div>
-                        <div
-                          className="deleteButton"
-                          onClick={() => deletePost(element)}
-                        >
-                          <Button variant="outlined">
-                            <DeleteIcon />
-                          </Button>
-                        </div>
+                <Card sx={{ backgroundColor: "none" }} key={element._id}>
+                  <CardContent>
+                    <div className="postCards">
+                      <div
+                        className="cardImage"
+                        onClick={() => openPost(element)}
+                      >
+                        <img
+                          src={element.coverImage || defaultPic}
+                          alt="cover pic"
+                        />
                       </div>
-                    </CardContent>
-                  </Card>
-                </>
+                      <div className="cardTitle">
+                        <Typography variant="h6" className="heading">
+                          {element.title}
+                        </Typography>
+                      </div>
+                      <div
+                        className="deleteButton"
+                        onClick={() => deletePost(element)}
+                      >
+                        <Button variant="outlined">
+                          <DeleteIcon />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               );
             })}
           </div>
