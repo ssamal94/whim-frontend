@@ -13,6 +13,7 @@ import PaymentPage from "./views/Payment";
 import ConfirmSubscription from "./views/ConfirmSubscription";
 import AuthorDetails from "./views/AuthorDetails";
 import MyAccount from "./views/MyAccount";
+import AboutUs from "./views/AboutUs";
 
 import {
   BrowserRouter as Router,
@@ -90,6 +91,7 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route path="/aboutUs" element={<AboutUs />} />
         </Switch>
       </Router>
     </div>
