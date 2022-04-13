@@ -12,6 +12,7 @@ import SubscriptionType from "./views/SubscriptionType";
 import PaymentPage from "./views/Payment";
 import ConfirmSubscription from "./views/ConfirmSubscription";
 import AuthorDetails from "./views/AuthorDetails";
+import MyAccount from "./views/MyAccount";
 
 import {
   BrowserRouter as Router,
@@ -78,6 +79,14 @@ function App() {
             element={
               <PrivateRoute>
                 <AuthorDetails />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/myAccount"
+            element={
+              <PrivateRoute>
+                <MyAccount />
               </PrivateRoute>
             }
           />

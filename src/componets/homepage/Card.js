@@ -68,7 +68,7 @@ function ProductCard(props) {
                   align="left"
                   component="div"
                 >
-                  (56894 ratings)
+                  (0 ratings)
                 </Typography>
                 <input type="radio" name="rating" value="5" id="5" />
                 <label htmlFor="5">☆</label>

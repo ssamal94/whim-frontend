@@ -135,7 +135,9 @@ function TopNav() {
                       >
                         {localStorage.getItem("token") ? (
                           <>
-                            <MenuItem>My account</MenuItem>
+                            <MenuItem onClick={() => navigate("/myAccount")}>
+                              My account
+                            </MenuItem>
                             <MenuItem onClick={logout}>Logout</MenuItem>
                           </>
                         ) : null}
