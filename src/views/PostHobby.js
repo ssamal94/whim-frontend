@@ -19,8 +19,14 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Dialog from "../componets/Dialogue";
+import useModal from "../hooks/useModal";
 
 const PostHobby = () => {
+  //Destructure modal methods for dialog box
+  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
+    useModal();
+
   //CATEGORIES
   const categories = ["music", "art", "tech"];
 
@@ -146,14 +152,17 @@ const PostHobby = () => {
         console.log(res);
         if (res.data.status === "ok") {
           if (res.data.isAuthor === "true") {
-            alert("post added");
+            setAlertDescription("post added");
+            setAlertStatus(true);
             navigate("/");
           } else {
-            alert("create your author page");
+            setAlertDescription("create your author page");
+            setAlertStatus(true);
             navigate("/authorDetails");
           }
         } else {
-          alert(res.data);
+          setAlertDescription(res.data);
+          setAlertStatus(true);
         }
       });
   };

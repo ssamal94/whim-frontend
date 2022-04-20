@@ -4,14 +4,20 @@ import axios from "axios";
 import "../assets/styles/scss/style.scss";
 import defaultPic from "../assets/images/defaultCardImage.webp";
 import TopNav from "../componets/TopNav";
+import Dialog from "../componets/Dialogue";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import DeleteIcon from "@mui/icons-material/Delete";
+import useModal from "../hooks/useModal";
 
 const MyAccount = () => {
   const navigate = useNavigate();
+
+  //Destructure modal methods for dialog box
+  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
+    useModal();
 
   //Profile pic
   const [profilePic, setProfilePic] = useState("");
@@ -44,7 +50,8 @@ const MyAccount = () => {
         } else if (res.data.message === "incomplete profile") {
           navigate("/authorDetails");
         } else {
-          alert(res.data.message);
+          setAlertDescription(res.data.message);
+          setAlertStatus(true);
         }
       });
   }, []);
@@ -77,14 +84,16 @@ const MyAccount = () => {
           localStorage.setItem("videoLinks", "");
           localStorage.setItem("title", "");
           localStorage.setItem("preRequisite", "");
-          alert("post deleted");
+          setAlertDescription("post deleted");
+          setAlertStatus(true);
           if (res.data.results !== null) {
             setData(res.data.results);
           } else {
             setData([]);
           }
         } else {
-          alert(res.data.message);
+          setAlertDescription(res.data.message);
+          setAlertStatus(true);
         }
       });
   };
@@ -101,93 +110,103 @@ const MyAccount = () => {
         .then((res) => {
           if (res.data.status === "ok") {
             localStorage.setItem("isSubscribed", false);
-            alert(
+            setAlertDescription(
               "Sorry to see you leave! You are unsubscribed from WHIM, you will not be able to access or post any content however, if you have any existing post as an Author, your post will stay active till you delete it."
             );
+            setAlertStatus(true);
           } else {
-            alert(
+            setAlertDescription(
               "Something went wrong, please try again after sometime. If the problem still persists, please contat us for help."
             );
+            setAlertStatus(true);
           }
         });
     }
   };
 
   return (
-    <div className="myAccountWrapper">
-      <TopNav />
-      <div className="topPan">
-        <div className="home">
-          <div className="card">
-            <div className="card-header">
-              <div className="card-image">
-                <img src={profilePic} alt="profile pic" />
+    <>
+      {alertStatus ? (
+        <Dialog
+          message={alertDescription}
+          toggleDialog={(status) => setAlertStatus(status)}
+        />
+      ) : null}
+      <div className="myAccountWrapper">
+        <TopNav />
+        <div className="topPan">
+          <div className="home">
+            <div className="card">
+              <div className="card-header">
+                <div className="card-image">
+                  <img src={profilePic} alt="profile pic" />
+                </div>
+                <div className="card-profile">
+                  <div className="card-details">
+                    <h5>{localStorage.getItem("name")}</h5>
+                  </div>
+                  <div className="card-contact">
+                    <h6>
+                      <span className="fa fa-envelope"></span>
+                      {localStorage.getItem("email")}
+                    </h6>
+                  </div>
+                  <div className="subscribeButton">
+                    <Button variant="outlined" onClick={changeSubscription}>
+                      {buttonText}
+                    </Button>
+                  </div>
+                </div>
               </div>
-              <div className="card-profile">
-                <div className="card-details">
-                  <h5>{localStorage.getItem("name")}</h5>
+              <div className="card-body">
+                <div className="card-content">
+                  <p>{aboutAuthor}</p>
                 </div>
-                <div className="card-contact">
-                  <h6>
-                    <span className="fa fa-envelope"></span>
-                    {localStorage.getItem("email")}
-                  </h6>
-                </div>
-                <div className="subscribeButton">
-                  <Button variant="outlined" onClick={changeSubscription}>
-                    {buttonText}
-                  </Button>
-                </div>
-              </div>
-            </div>
-            <div className="card-body">
-              <div className="card-content">
-                <p>{aboutAuthor}</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="bottomPan">
-        <div className="posts">
-          <div className="heading">Your posts</div>
-          <div className="listView">
-            {data.map((element) => {
-              return (
-                <Card sx={{ backgroundColor: "none" }} key={element._id}>
-                  <CardContent>
-                    <div className="postCards">
-                      <div
-                        className="cardImage"
-                        onClick={() => openPost(element)}
-                      >
-                        <img
-                          src={element.coverImage || defaultPic}
-                          alt="cover pic"
-                        />
+        <div className="bottomPan">
+          <div className="posts">
+            <div className="heading">Your posts</div>
+            <div className="listView">
+              {data.map((element) => {
+                return (
+                  <Card sx={{ backgroundColor: "none" }} key={element._id}>
+                    <CardContent>
+                      <div className="postCards">
+                        <div
+                          className="cardImage"
+                          onClick={() => openPost(element)}
+                        >
+                          <img
+                            src={element.coverImage || defaultPic}
+                            alt="cover pic"
+                          />
+                        </div>
+                        <div className="cardTitle">
+                          <Typography variant="h6" className="heading">
+                            {element.title}
+                          </Typography>
+                        </div>
+                        <div
+                          className="deleteButton"
+                          onClick={() => deletePost(element)}
+                        >
+                          <Button variant="outlined">
+                            <DeleteIcon />
+                          </Button>
+                        </div>
                       </div>
-                      <div className="cardTitle">
-                        <Typography variant="h6" className="heading">
-                          {element.title}
-                        </Typography>
-                      </div>
-                      <div
-                        className="deleteButton"
-                        onClick={() => deletePost(element)}
-                      >
-                        <Button variant="outlined">
-                          <DeleteIcon />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

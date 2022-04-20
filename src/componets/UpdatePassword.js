@@ -38,7 +38,8 @@ const UpdatePassword = () => {
   const updatePassword = (event) => {
     event.preventDefault();
     if (password.password !== password.confirmPassword) {
-      alert("Passwords do not match");
+      setAlertDescription("Passwords do not match");
+      setAlertStatus(true);
       return;
     }
     const currentPath = window.location.pathname.split("/");

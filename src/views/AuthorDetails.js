@@ -5,8 +5,14 @@ import TextField from "@mui/material/TextField";
 import Save from "@mui/icons-material/Save";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Dialog from "../componets/Dialogue";
+import useModal from "../hooks/useModal";
 
 const AuthorDetails = () => {
+  //Destructure modal methods for dialog box
+  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
+    useModal();
+
   //Route variable
   const navigate = useNavigate();
   //State variable to store image
@@ -47,7 +53,8 @@ const AuthorDetails = () => {
 
   const saveDetails = () => {
     if (intro === "" || description === "" || profilePic === "") {
-      alert("All fields are mandatory");
+      setAlertDescription("All fields are mandatory");
+      setAlertStatus(true);
     } else {
       const email = localStorage.getItem("email");
       axios
@@ -61,7 +68,8 @@ const AuthorDetails = () => {
           if (res.data.status === "ok") {
             navigate("/");
           } else {
-            alert(res.data.message);
+            setAlertDescription(res.data.message);
+            setAlertStatus(true);
           }
         });
     }
@@ -69,6 +77,12 @@ const AuthorDetails = () => {
 
   return (
     <>
+      {alertStatus ? (
+        <Dialog
+          message={alertDescription}
+          toggleDialog={(status) => setAlertStatus(status)}
+        />
+      ) : null}
       <div className="authorDetailsWrapper">
         <div className="topPan">
           <div className="authorName">{localStorage.getItem("name")}</div>

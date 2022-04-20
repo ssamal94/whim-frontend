@@ -22,6 +22,10 @@ import Dialog from "./Dialogue";
  * @param {String} confirmPassword Repeat Password
  */
 const Register = () => {
+  //Destructure modal methods for dialog box
+  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
+    useModal();
+
   //Route constant for navigation
   const navigate = useNavigate();
 
@@ -40,10 +44,6 @@ const Register = () => {
     passwordMessage: "",
     confirmPasswordMessage: "",
   });
-
-  //Destructure modal methods for dialog box
-  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
-    useModal();
 
   const [nameError, setNameError] = useState(false);
   const [emailError, setEmailError] = useState(false);

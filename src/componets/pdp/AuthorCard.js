@@ -5,8 +5,14 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import axios from "axios";
+import useModal from "../../hooks/useModal";
+import Dialog from "../Dialogue";
 
 const AuthorCard = () => {
+  //Destructure modal methods for dialog box
+  const { alertStatus, alertDescription, setAlertDescription, setAlertStatus } =
+    useModal();
+
   const [name, setName] = useState("Author name");
   const [intro, setIntro] = useState(
     "This is a sampe intro, author is genius!"
@@ -25,12 +31,21 @@ const AuthorCard = () => {
         if (res.data.message === "ok") {
           setIntro(res.data.intro);
           setAbout(res.data.about);
-        } else alert(res.data.message);
+        } else {
+          setAlertDescription(res.data.message);
+          setAlertStatus(true);
+        }
       });
   });
 
   return (
     <>
+      {alertStatus ? (
+        <Dialog
+          message={alertDescription}
+          toggleDialog={(status) => setAlertStatus(status)}
+        />
+      ) : null}
       <div className="authorCardComponentWrapper">
         <Card className="card">
           <CardContent>
