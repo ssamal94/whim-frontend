@@ -115,11 +115,10 @@ const PostHobby = () => {
   //Remove video from the upload list
   const removeVideo = (updateThis) => {
     let tempArray = [...videoLinks];
-    tempArray.forEach((element, index) => {
-      if (element.name === updateThis.name) {
-        tempArray.splice(index, 1);
-      }
+    tempArray = tempArray.filter((item) => {
+      return item !== updateThis;
     });
+
     setVideoLinks(tempArray);
   };
 

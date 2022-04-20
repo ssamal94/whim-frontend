@@ -14,6 +14,7 @@ import ConfirmSubscription from "./views/ConfirmSubscription";
 import AuthorDetails from "./views/AuthorDetails";
 import MyAccount from "./views/MyAccount";
 import AboutUs from "./views/AboutUs";
+import PageNotFound from "./views/PageNotFound";
 
 import {
   BrowserRouter as Router,
@@ -92,6 +93,7 @@ function App() {
             }
           />
           <Route path="/aboutUs" element={<AboutUs />} />
+          <Route path="*" element={<PageNotFound />} />
         </Switch>
       </Router>
     </div>
