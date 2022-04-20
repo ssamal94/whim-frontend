@@ -68,7 +68,7 @@ const MyAccount = () => {
     axios
       .post("http://localhost:9032/deletePost", { postId: post._id })
       .then((res) => {
-        if (res.body.message === "ok") {
+        if (res.data.message === "ok") {
           localStorage.setItem("aboutCorse", "");
           localStorage.setItem("category", "");
           localStorage.setItem("coverImage", "");
@@ -78,8 +78,13 @@ const MyAccount = () => {
           localStorage.setItem("title", "");
           localStorage.setItem("preRequisite", "");
           alert("post deleted");
+          if (res.data.results !== null) {
+            setData(res.data.results);
+          } else {
+            setData([]);
+          }
         } else {
-          alert(res.body.message);
+          alert(res.data.message);
         }
       });
   };
